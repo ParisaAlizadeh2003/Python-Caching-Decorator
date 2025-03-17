@@ -11,6 +11,17 @@ This project implements a **Caching Decorator** in Python. The decorator stores 
    - If the result is found in the cache, it is returned immediately.
    - If the result is not found, the function is executed, and the result is stored in the cache for future use.
 
+## Why Use a Dictionary for Caching?
+
+This implementation uses a **dictionary (`dict`) for caching** because dictionaries in Python are highly optimized for **hash table lookups**. Since dictionary keys are hashed, retrieving a cached result is **O(1)** on average, making it extremely fast. 
+
+Using a dictionary for caching ensures:
+- **Fast lookups** due to hash-based indexing.
+- **Efficient memory usage** as only required results are stored.
+- **Performance optimization** by avoiding redundant computations.
+
+Since lists are **mutable and unhashable**, they cannot be used as dictionary keys. Instead, function arguments are converted into **tuples**, which are immutable and hashable, allowing them to be stored efficiently as dictionary keys.
+
 ## Example Usage
 
 ```python
@@ -22,3 +33,5 @@ print(Sum([1, 4]))  # Computed and cached
 print(Sum([2, 4]))  # Computed and cached
 print(Sum([1, 4]))  # Cached result returned
 print(Sum([3, 4]))  # Computed and cached
+
+
